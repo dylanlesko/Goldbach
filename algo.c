@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define COUNT 100000
+#define COUNT 10000000
 typedef enum { FALSE, TRUE} boolean;
 
 
@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
 	}
 
 	//goldbach
-	for(i=2; i < COUNT; i = i + 2)
+	for(i=4; i < COUNT; i = i + 2)
 	{
 		float ratio = i / (float)COUNT;
 		int c = ratio * 25;
