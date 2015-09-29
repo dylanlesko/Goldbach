@@ -13,6 +13,7 @@ int main(int argc, char *argv[])
 	int j = 0;
 	int k = 0;
 	int w = 0;
+	int x = 0;
 	int sum = 0;
 	int prime_one = 0;
 	int prime_two = 0;
@@ -66,7 +67,7 @@ int main(int argc, char *argv[])
 	}
 
 	//goldbach
-	for(i=4; i < COUNT; i = i + 2)
+	for(i= 4; i < COUNT; i = i + 2)
 	{
 		float ratio = i / (float)COUNT;
 		int c = ratio * 25;
@@ -77,14 +78,28 @@ int main(int argc, char *argv[])
 		for(j = 1; j < i && proved == FALSE; j++)
 		{
 			sum = 0;
-			for(k = 1; k < i && proved == FALSE && k < prime_count; k++)
+
+
+			x = 1;
+			while( x < i )
+			{
+				if( primes[x] >= i )
+				{
+					x--;
+					break;
+				}
+				x++;
+			}
+
+			//for(k = 1; k < i && proved == FALSE && k < prime_count; k++)
+			for(k = x; k > 0; k--)
 			{
 				sum = primes[j] + primes[k];
 				if(sum == i)
 				{
 					proved = TRUE;
 					//printf("%d = %d + %d\n", i, primes[j], primes[k] );
-					fprintf(fp, "%d%s%d%s%d\n", i, " = ", primes[j], " + ", primes[k]);
+					//fprintf(fp, "%d%s%d%s%d\n", i, " = ", primes[j], " + ", primes[k]);
 				}
 			}
 		}
@@ -115,5 +130,6 @@ int main(int argc, char *argv[])
 
 	printf("\nGoldbach demonstrated yo\n");
 	printf("Output dumped to goldbach.txt\n");
+	fclose(fp);
 	free(primes);
 }
